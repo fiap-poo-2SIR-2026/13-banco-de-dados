@@ -2,23 +2,23 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        Conexao conexao = new Conexao();
-        Connection connection = conexao.getConnection();
-        String sql;
-        PreparedStatement ps;
-        ResultSet rs;
 
-        // inserir um registro na tabela java_categoria
-        sql = "insert into java_categoria(categoria) values (?)";
-        try {
-            ps = connection.prepareStatement(sql);
-            ps.setString(1, "xyz");
-            ps.executeUpdate();
-        } catch(SQLException e) {
-            System.out.println(e.getMessage());
+        // testa a inserção da categoria
+        CategoriaDAO categoriaDAO = new CategoriaDAO();
+        Categoria categoria  = new Categoria("def");
+        //categoriaDAO.inserir(categoria);
+
+        // testa a listagem
+        List<Categoria> lista = categoriaDAO.listar();
+        for(Categoria c : lista) {
+            System.out.print("ID: " + c.getId() + "  ");
+            System.out.println("Categoria: " + c.getCategoria());
         }
+
+
     }
 }

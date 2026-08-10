@@ -7,7 +7,7 @@ public class Conexao {
     private final String user = "";
     private final String password = "";
 
-    public Connection getConnection() {
+    public Connection conectar() {
         try {
             return DriverManager.getConnection(url, user, password);
         }
